@@ -1,0 +1,51 @@
+/* Note: required _screen-breakpoints.css mixin to roll this on */
+/* 
+Each individual mixin for each type of utility $prefix is goint to be the name formula,
+pass utility mixin name to each-media-breakpoint-up @mixin to put properties in.
+$(important) will be coming from global setting.
+*/
+
+/* Method 2 */
+@define-mixin each-display-property $state-mixin {
+  &invisible {
+    @mixin $(state-mixin) {
+      visibility: hidden$(important);
+    }
+  }
+  &hidden {
+    @mixin $(state-mixin) {
+      display: none$(important);
+    }
+  }
+  @each $v in (inline, inline-block, block, flex, inline-flex) {
+    &$(v) {
+      @mixin $(state-mixin) {
+        display: $(v)$(important);
+      }
+    }
+  }
+}
+/* All screen props */
+. {
+  @mixin each-plain each-display-property;
+}
+/* media screen props */
+@mixin each-media-breakpoint-up {
+  @mixin each-plain each-display-property;
+}
+
+/*
+Utilities for toggling `display` in print
+*/
+
+@media print {
+  .d-print-none { display: none !important; }
+  .d-print-inline { display: inline !important; }
+  .d-print-inline-block { display: inline-block !important; }
+  .d-print-block { display: block !important; }
+  .d-print-table { display: table !important; }
+  .d-print-table-row { display: table-row !important; }
+  .d-print-table-cell { display: table-cell !important; }
+  .d-print-flex { display: flex !important; }
+  .d-print-inline-flex { display: inline-flex !important; }
+}

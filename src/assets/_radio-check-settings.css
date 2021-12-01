@@ -1,0 +1,8 @@
+/* Radio & checkboxes */
+$checkbox-radio-size: 1.25rem;
+$checkbox-radio-size-sm: 1rem;
+$checkbox-radio-gutter: 0.5rem;
+$checkbox-radio-focus-shadow: 0 0 0 1px #ffffff, $input-btn-focus-box-shadow;
+$checkbox-radio-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+$checkbox-radio-disabled-color: $grey-400;
+$checkbox-indicator-bg-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 768'%3E%3Cpath fill='%23fff' d='M216.101 666.134c22.393 29.855 66.041 32.958 92.434 6.566l429.327-429.327c23.949-23.949 23.949-62.788 0-86.737s-62.788-23.949-86.737 0l-379.327 379.327-141.566-188.755c-20.323-27.094-58.764-32.594-85.868-12.272s-32.594 58.764-12.272 85.868l183.998 245.331z'/%3E%3C/svg%3E");

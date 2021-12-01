@@ -1,0 +1,189 @@
+/* Quickly modify global styling by enabling or disabling optional features. */
+
+/* Note: Assuming 1rem = 16px */
+
+/* Note: calc() function used here is post-css calc plugin, which gives computed value directly */
+
+/* Applies important to utility classes defined */
+/* leave it blank if not required, donot remove! i.e. $important:; */
+$important: !important;
+
+/* Color system */
+
+$white: #ffffff;
+$grey-100: #f8f9fa;
+$grey-200: #f6f8fd;
+$grey-300: #dee2e6;
+$grey-400: #ced4da;
+$grey-500: #7b92b4;
+$grey-600: #6c757d;
+$grey-700: #5a76a0;
+$grey-800: #485e7f;
+$grey-900: #212529;
+$black: #000000;
+
+$red: #e74b24;
+$blue: #00b9f5;
+
+/* Spacing */
+$spacer: 1rem;
+/* spacer mapped options list below */
+
+/* Body */
+
+/* Settings for the `<body>` element. */
+
+$body-bg: $white;
+$body-color: $grey-900;
+
+
+/* Links */
+/* Style anchor elements. */
+
+$link-color: $blue;
+$link-decoration: none;
+$link-hover-color: color($link-color shade(15%));
+$link-hover-decoration: underline;
+
+/*
+Paragraphs
+Style p element.
+*/
+
+$paragraph-margin-bottom: 1rem;
+
+/* 
+Fonts
+Font, line-height, and color for body text, headings, and more.
+*/
+$font-family-sans-serif: "Open Sans", arial, tahoma, verdana, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base: $font-family-sans-serif;
+
+/* Assumes the browser default, typically `16px` */
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-sm: 0.875rem;
+
+$font-weight-lighter: lighter;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-bolder: bolder;
+
+$font-weight-base: $font-weight-normal;
+
+$line-height-base: 1.5;
+$line-height-lg: 1.5;
+$line-height-sm: 1.5;
+
+/* if base font size applied to body changes, then these values won't change */
+/* onlt html (root) font change will affect theose scalings */
+$h1-font-size: calc($font-size-base * 2.5);
+$h2-font-size: calc($font-size-base * 2);
+$h3-font-size: calc($font-size-base * 1.75);
+$h4-font-size: calc($font-size-base * 1.5);
+$h5-font-size: calc($font-size-base * 1.25);
+$h6-font-size: $font-size-base;
+
+$headings-margin-bottom: calc($spacer / 2);
+$headings-font-family: inherit;
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: 1.2;
+$headings-color: inherit;
+
+$dt-font-weight: $font-weight-bold;
+$table-caption-color: $grey-600;
+$table-cell-padding: 0.75rem;
+$label-margin-bottom: 0;
+
+
+
+/* Screen media Breakpoints */
+$breakpoint-xs: 0;
+$breakpoint-xs-max: 575px;
+
+$breakpoint-sm: 576px;
+$breakpoint-sm-max: 767px;
+
+$breakpoint-md: 768px;
+$breakpoint-md-max: 991px;
+
+$breakpoint-lg: 992px;
+$breakpoint-lg-max: 1199px;
+
+$breakpoint-xl: 1200px;
+
+
+
+/* form components settings */
+$input-btn-focus-color: color($blue a(25%));
+$input-btn-focus-width: 0.2rem;
+$input-btn-focus-box-shadow:  0 0 0 $input-btn-focus-width $input-btn-focus-color;
+
+/* Buttons */
+$btn-font-size:  $font-size-base;
+$btn-font-weight: $font-weight-semibold;
+
+$btn-padding-y: 0.375rem;
+$btn-padding-x: 0.75rem;
+$btn-line-height: $line-height-base;
+
+$btn-padding-y-sm: 0.25rem;
+$btn-padding-x-sm: 0.5rem;
+$btn-font-size-sm: $font-size-sm;
+$btn-line-height-sm: $line-height-sm;
+
+$btn-padding-y-lg: 0.5rem;
+$btn-padding-x-lg: 1rem;
+$btn-font-size-lg: $font-size-lg;
+$btn-line-height-lg: $line-height-lg;
+
+$btn-border-width: 1px;
+
+$btn-box-shadow: inset 0 1px 0 color($white a(0.15%)), 0 1px 1px color($black a(0.75%));
+$btn-focus-width: $input-btn-focus-width;
+$btn-focus-box-shadow: $input-btn-focus-box-shadow;
+$btn-disabled-opacity: 0.65;
+$btn-active-box-shadow: inset 0 3px 5px color($black a(1.25%));
+
+$btn-link-disabled-color: $grey-600;
+
+$btn-block-spacing-y: 0.5rem;
+
+/* Allows for customizing button radius independently from global border radius */
+$btn-border-radius: 4px;
+$btn-border-radius-lg: $btn-border-radius;
+$btn-border-radius-sm: $btn-border-radius;
+
+$btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+
+/* Radio & checkboxes */
+$checkbox-radio-size: 1.25rem;
+$checkbox-radio-size-sm: 1rem;
+$checkbox-radio-gutter: 0.5rem;
+$checkbox-radio-focus-shadow: 0 0 0 1px #ffffff, $input-btn-focus-box-shadow;
+$checkbox-radio-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
+$checkbox-radio-disabled-color: $grey-400;
+$checkbox-indicator-bg-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 768 768'%3E%3Cpath fill='%23fff' d='M216.101 666.134c22.393 29.855 66.041 32.958 92.434 6.566l429.327-429.327c23.949-23.949 23.949-62.788 0-86.737s-62.788-23.949-86.737 0l-379.327 379.327-141.566-188.755c-20.323-27.094-58.764-32.594-85.868-12.272s-32.594 58.764-12.272 85.868l183.998 245.331z'/%3E%3C/svg%3E");
+$dropdown-bg-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M5.293 9.707l6 6c0.391 0.391 1.024 0.391 1.414 0l6-6c0.391-0.391 0.391-1.024 0-1.414s-1.024-0.391-1.414 0l-5.293 5.293-5.293-5.293c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z'/%3E%3C/svg%3E");
+
+/* Form elements: Input | Select | Textarea */
+$input-padding-y:  0.375rem;
+$input-padding-x:  0.75rem;
+$input-border-radius: 4px;
+$input-border-color: $grey-300;
+$input-bg: $white;
+$input-color: $body-color;
+$input-placeholder-color: $grey-500;
+$input-font-weight: $font-weight-semibold;
+$input-disabled-bg: $grey-200;
+$input-font-size:  $font-size-base;
+$input-line-height: $line-height-base;
+$input-transition:  border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+$input-label-transition:  font-size 0.15s ease-in-out, transform 0.15s ease-in-out;
+$input-focus-box-shadow: $input-btn-focus-box-shadow;
+$input-height: calc($input-font-size * $input-line-height + $input-padding-y *2 + 1rem/8);

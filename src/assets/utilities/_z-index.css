@@ -1,0 +1,12 @@
+/*
+.z-0 -> .z-5	{ z-index: 0 -> 5 }
+.z-10	{ z-index: 10; }
+.z-20	{ z-index: 20; }
+.z-30	{ z-index: 30; }
+.z-40	{ z-index: 40; }
+.z-50	{ z-index: 50; }
+*/
+@each $val in (0, 1, 2, 3, 4, 5, 10, 20, 30, 40, 50) {
+    .z-$(val) { z-index: $val$(important); }
+}
+.z-auto	{ z-index: auto; }

@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0da39e"],{"6b62":function(e,n,t){"use strict";t.r(n);var r=t("7a23");function o(e,n,t,o,c,u){var a=Object(r["resolveComponent"])("router-view");return Object(r["openBlock"])(),Object(r["createBlock"])("div",null,[Object(r["createVNode"])(a)])}var c={name:"widgetRouter",setup:function(){return{}}};c.render=o;n["default"]=c}}]);
+//# sourceMappingURL=chunk-2d0da39e.c8826dbc.js.map

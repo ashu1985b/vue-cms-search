@@ -1,0 +1,86 @@
+/*
+Fluid width level calculations
+    w-auto : auto | w-1/2 : 50%
+
+    w-1/3 : 33.333333% | w-2/3 : 66.666667%
+
+    w-1/4 : 25% | w-2/4 : 50% | w-3/4 : 75%
+
+    w-1/5 : 20% | w-2/5 : 40% | w-3/5 : 60% | w-4/5 : 80%,
+
+    w-1/6 : 16.666667% | w-2/6 : 33.333333% | w-3/6 : 50%,
+    w-4/6 : 66.666667% | w-5/6 : 83.333333%
+
+    w-1/12 : 8.333333% | w-2/12 : 16.666667% | w-3/12 : 25%,
+    w-4/12 : 33.333333% | w-5/12 : 41.666667% | w-6/12 : 50%,
+    w-7/12 : 58.333333% | w-8/12 : 66.666667% | w-9/12 : 75%,
+    w-10/12 : 83.333333% | w-11/12 : 91.666667%
+
+    w-full: 100% | w-screen: 100vw
+*/
+/* % width calculating formula mixin */
+/*
+@define-mixin w-formula-percent $base, $key {
+    &w-$(key)\/$(base) {
+        width: calc(100% * $(key)/$(base))$(important);
+    }
+}
+*/
+/* width utilities looping mixin */
+
+/* ----------- Method 2 ----------- */
+
+@define-mixin w-formula-percentage $base, $key, $state-mixin {
+    &w-$(key)\/$(base) {
+        @mixin $(state-mixin) {
+            width: calc(100% * $(key)/$(base))$(important);
+        }
+    }
+}
+@define-mixin each-width-variant $state-mixin {
+    &w-auto {
+        @mixin $(state-mixin) {
+            width: auto$(important);
+        }
+    }
+    /* 2 base widths */
+    @mixin w-formula-percentage 2, 1, $state-mixin;
+    /* 3 base widths */
+    @each $k in (1, 2) {
+        @mixin w-formula-percentage 3, $k, $state-mixin;
+    }
+    /* 4 base widths */
+    @each $k in (1, 2, 3) {
+        @mixin w-formula-percentage 4, $k, $state-mixin;
+    }
+    /* 5 base widths */
+    @each $k in (1, 2, 3, 4) {
+        @mixin w-formula-percentage 5, $k, $state-mixin;
+    }
+    /* 6 base widths */
+    @each $k in (1, 2, 3, 4, 5) {
+        @mixin w-formula-percentage 6, $k, $state-mixin;
+    }
+    /* 12 base widths */
+    @each $k in (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11) {
+        @mixin w-formula-percentage 12, $k, $state-mixin;
+    }
+    &w-full {
+        @mixin $(state-mixin) {
+            width: 100%$(important);
+        }
+    }
+    &w-screen {
+        @mixin $(state-mixin) {
+            width: 100vw$(important);
+        }
+    }
+}
+/* all screen properties */
+. {
+    @mixin each-plain each-width-variant;
+}
+/* Breakpoint screen properties */
+@mixin each-media-breakpoint-up {
+    @mixin each-plain each-width-variant;
+}

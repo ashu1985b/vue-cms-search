@@ -1,0 +1,16 @@
+/* Represents a single div with size and state options */
+.u-checkbox {
+    @mixin utility-cr-indicator $checkbox-radio-size {
+        @mixin checkbox-indicator;
+    }
+    &--checked {
+        @mixin checkbox-indicator-checked;
+    }
+    &--disabled {
+        @mixin checkbox-indicator-disabled;
+        pointer-events: none;
+    }
+    &--sm {
+        @mixin utility-cr-indicator-resize $checkbox-radio-size-sm;
+    }
+}

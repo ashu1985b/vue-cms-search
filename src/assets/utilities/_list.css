@@ -1,0 +1,6 @@
+.list-none { list-style-type: none$(important); }
+.list-disc { list-style-type: disc$(important); }
+.list-decimal { list-style-type: decimal$(important); }
+
+.list-inside { list-style-position: inside$(important); }
+.list-outside { list-style-position: outside$(important); }

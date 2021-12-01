@@ -1,0 +1,141 @@
+/* Border radius */
+@define-mixin top-lr $state-mixin, $value {
+    @mixin $(state-mixin) {
+        border-top-left-radius: $value$(important);
+        border-top-right-radius: $value$(important);
+    }
+}
+@define-mixin bottom-lr $state-mixin, $value {
+    @mixin $(state-mixin) {
+        border-bottom-left-radius: $value$(important);
+        border-bottom-right-radius: $value$(important);
+    }
+}
+@define-mixin right-tb $state-mixin, $value {
+    @mixin $(state-mixin) {
+        border-top-right-radius: $value$(important);
+        border-bottom-right-radius: $value$(important);
+    }
+}
+@define-mixin left-tb $state-mixin, $value {
+    @mixin $(state-mixin) {
+        border-top-left-radius: $value$(important);
+        border-bottom-left-radius: $value$(important);
+    }
+}
+/* Below: $v, $k params order is critical */
+@define-mixin rounded-plain $state-mixin, $v, $k, $type, $ref {
+    &rounded$(k) {
+        @mixin $(state-mixin) {
+            border-radius: $v$(important);
+        }
+    }
+}
+@define-mixin rounded-two-side $state-mixin, $v, $k, $type, $ref {
+    &rounded$(type)$(k) {
+        @mixin $(ref) $state-mixin, $v;
+    }
+}
+@define-mixin rounded-one-side $state-mixin, $v, $k, $type, $ref {
+    &rounded$(type)$(k) {
+        @mixin $(state-mixin) {
+            border-$(ref)-radius: $v$(important);
+        }
+    }
+}
+@define-mixin border-radius-loop $mixin, $state-mixin, $type, $prop {
+    @each $k, $v in (-none, -sm, , -md, -lg, -full), (0, 0.125rem, 0.25rem, 0.375rem, 0.5rem, 9999px) {
+        @mixin $(mixin) $state-mixin, $v, $k, $type, $prop;
+    }
+}
+@define-mixin each-border-radius-variant $state-mixin {
+    @mixin border-radius-loop rounded-plain, $state-mixin;
+    
+    @each $type, $ref in (-t, -r, -b, -l), (top-lr, right-tb, bottom-lr, left-tb) {
+        @mixin border-radius-loop rounded-two-side, $state-mixin, $type, $ref;
+    }
+    
+    @each $type, $ref in (-tl, -tr, -br, -bl), (top-left, top-right, bottom-right, bottom-left) {
+        @mixin border-radius-loop rounded-one-side, $state-mixin, $type, $ref;
+    }
+}
+
+/* Executing different loops */
+/* using dot (.) method */
+. {
+    @mixin each-plain each-border-radius-variant;
+}
+/* plain media query variants */
+/* You can add hove and focus as well using respective mixin functions */
+@mixin each-media-breakpoint-up {
+    @mixin each-plain each-border-radius-variant;
+}
+
+
+/* Border width */
+@define-mixin border-plain $state-mixin, $v, $k, $type, $ref {
+    &border$(k) {
+        @mixin $(state-mixin) {
+            border-width: $v$(important);
+        }
+    }
+}
+@define-mixin border-one-side $state-mixin, $v, $k, $type, $ref {
+    &border$(type)$(k) {
+        @mixin $(state-mixin) {
+            border-$(ref)-width: $v$(important);
+        }
+    }
+}
+@define-mixin border-width-loop $mixin, $state-mixin, $type, $prop {
+    @each $k, $v in (-0, , -2, -4), (0, 1px, 2px, 4px) {
+        @mixin $(mixin) $state-mixin, $v, $k, $type, $prop;
+    }
+}
+@define-mixin each-border-width-variant $state-mixin {
+    @mixin border-width-loop border-plain, $state-mixin;
+    @each $type, $ref in (-t, -r, -b, -l), (top, right, bottom, left) {
+        @mixin border-width-loop border-one-side, $state-mixin, $type, $ref;
+    }
+}
+/* Rendering of groupings */
+/* Dot (.) method */
+. {
+    @mixin each-plain each-border-width-variant;
+}
+/* plain media query variants */
+/* You can add hove and focus as well using respective mixin functions */
+@mixin each-media-breakpoint-up {
+    @mixin each-plain each-border-width-variant;
+}
+
+/* Border style */
+.border-solid	{ border-style: solid$(important); }
+.border-dashed	{ border-style: dashed$(important); }
+.border-dotted	{ border-style: dotted$(important); }
+
+/* Border color */
+
+/* ----------------- Method 2 ------------------- */
+
+/* Uses _hover.css mixins declared functionality and serves a its feeder property "$use-each-mixin" */
+@define-mixin each-border-color-variant $state-mixin {
+    @each $k, $v in (transparent, current, black, white, red, blue, grey, light-grey), (transparent, currentColor, $black, $white, $red, $blue, #555555, #cacaca) {
+        &border-$(k) {
+            @mixin $(state-mixin) {
+                border-color: $v$(important);
+            }
+        }
+    }
+}
+/* Method 2 loop - all screen */
+
+. {
+    @mixin each-plain-hover-focus each-border-color-variant;
+}
+
+/* Method 2: Roll media breakpoint properties */
+
+@mixin each-media-breakpoint-up {
+    @mixin each-plain-hover-focus each-border-color-variant;
+}

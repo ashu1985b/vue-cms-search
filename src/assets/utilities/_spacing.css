@@ -1,0 +1,109 @@
+@define-mixin pm-y-props $state-mixin, $v, $prop {
+    @mixin $(state-mixin) {
+        $(prop)-top: $v$(important);
+        $(prop)-bottom: $v$(important);
+    }
+}
+@define-mixin pm-x-props $state-mixin, $v, $prop {
+    @mixin $(state-mixin) {
+        $(prop)-left: $v$(important);
+        $(prop)-right: $v$(important);
+    }
+}
+@define-mixin pm-two-side-rules $state-mixin, $v, $k, $prop {
+    @each $i, $p in (y, x), (pm-y-props, pm-x-props) {
+        &$(i)-$(k) {
+            @mixin $(p) $state-mixin, $v, $prop;
+        }
+    }
+}
+@define-mixin pm-one-side-rules $state-mixin, $v, $k, $prop {
+    @each $i, $side  in (t, r, b, l), (top, right, bottom, left) {
+        &$(i)-$(k) {
+            @mixin $(state-mixin) {
+                $(prop)-$(side): $v$(important);
+            }
+        }
+    }
+}
+@define-mixin pm-all-side-rules $state-mixin, $v, $k, $prop {
+    &-$(k) {
+        @mixin $(state-mixin) {
+            $(prop): $v$(important);
+        }
+    }
+}
+@define-mixin run-negative-value $state-mixin, $v, $k, $prop, $run-mixin {
+    @mixin $(run-mixin) $state-mixin, -$(v), $k, $prop;
+}
+/* here 0 & auto values loop is delebrately left out for negative and positive values looping explicitly */
+@define-mixin spacing-loop $run-mixin, $state-mixin, $prop, $run-mixin-ref {
+    @each $k, $v in (1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 24, px), (0.25rem, 0.5rem, 0.75rem, 1rem, 1.25rem, 1.5rem, 2rem, 3rem, 4rem, 5rem, 6rem, 1px) {
+        @mixin $(run-mixin) $state-mixin, $v, $k, $prop, $run-mixin-ref;
+    }   
+}
+@define-mixin negative-spacing-loop $run-mixin, $state-mixin, $prop {
+    @mixin spacing-loop run-negative-value, $state-mixin, $prop, $run-mixin;
+}
+
+/* Padding */
+@define-mixin each-padding-variant $state-mixin {
+    &p {
+        @mixin pm-all-side-rules $state-mixin, 0, 0, padding;
+        @mixin spacing-loop pm-all-side-rules, $state-mixin, padding;
+    
+        @mixin pm-two-side-rules $state-mixin, 0, 0, padding;
+        @mixin spacing-loop pm-two-side-rules, $state-mixin, padding;
+    
+        @mixin pm-one-side-rules $state-mixin, 0, 0, padding;
+        @mixin spacing-loop pm-one-side-rules, $state-mixin, padding;
+    }
+}
+/* mixin method dot (.) */
+. {
+    @mixin each-plain each-padding-variant;
+}
+/* plain media query variants */
+/* You can add hove and focus as well using respective mixin functions */
+@mixin each-media-breakpoint-up {
+    @mixin each-plain each-padding-variant;
+}
+/* Margins */
+@define-mixin each-margin-variant $state-mixin {
+    &m {
+        @mixin pm-all-side-rules $state-mixin, 0, 0, margin;
+        @mixin spacing-loop pm-all-side-rules, $state-mixin, margin;
+        @mixin pm-all-side-rules $state-mixin, auto, auto, margin;
+    }
+    &-m {
+        @mixin negative-spacing-loop pm-all-side-rules, $state-mixin, margin;
+    }
+
+    &m {
+        @mixin pm-two-side-rules $state-mixin, 0, 0, margin;
+        @mixin spacing-loop pm-two-side-rules, $state-mixin, margin;
+        @mixin pm-two-side-rules $state-mixin, auto, auto, margin;
+    }
+    &-m {
+        @mixin negative-spacing-loop pm-two-side-rules, $state-mixin, margin;
+    }
+
+    &m {    
+        @mixin pm-one-side-rules $state-mixin, 0, 0, margin;
+        @mixin spacing-loop pm-one-side-rules, $state-mixin, margin;
+        @mixin pm-one-side-rules $state-mixin, auto, auto, margin;
+    }
+    &-m {
+        @mixin negative-spacing-loop pm-one-side-rules, $state-mixin, margin;
+    }
+}
+
+/* mixin method dot (.) */
+. {
+    @mixin each-plain each-margin-variant;
+}
+/* plain media query variants */
+/* You can add hove and focus as well using respective mixin functions */
+@mixin each-media-breakpoint-up {
+    @mixin each-plain each-margin-variant;
+}

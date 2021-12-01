@@ -1,0 +1,114 @@
+@define-mixin cr-indicator $top-position: 0, $size: 100% {
+    &:before, &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        top: $top-position;
+        width: $size;
+        height: $size;
+        user-select: none;
+        transition: $checkbox-radio-transition;
+        @mixin-content;
+    }
+}
+@define-mixin cr-native-input-preset {
+    cursor: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    opacity: 0;
+}
+@define-mixin cr-native-input-parent $size {
+    flex-shrink: 0;
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    margin-top: -1px;
+    height: $size;
+    width: $size;
+}
+/* Checkbox element Indicator */
+@define-mixin checkbox-indicator $top-position, $size {
+    @mixin cr-indicator $top-position, $size {
+        border-radius: 15%;
+    }
+    &:before {
+        border: 1px solid $grey-600;
+    }
+    &:after {
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 100% 70%;
+    }
+}
+@define-mixin checkbox-indicator-checked {
+    &:before {
+        background-color: $blue;
+        border-color: $blue;
+    }
+    &:after {
+        background-image: $checkbox-indicator-bg-image;
+    }
+}
+@define-mixin checkbox-indicator-disabled {
+    &:before {
+        background-color: $checkbox-radio-disabled-color;
+        border-color: $checkbox-radio-disabled-color;
+    }
+}
+
+/* Radio element indicator */
+@define-mixin radio-indicator $top-position, $size {
+    @mixin cr-indicator $top-position, $size {
+        border-radius: 100%;
+    }
+    &:before {
+        border: 0.14rem solid $blue;
+    }
+    &:after {
+        visibility: hidden;
+        transform-origin: center center;
+        transform: scale(0);
+        background-color: transparent;
+    }
+}
+@define-mixin radio-indicator-checked {
+    &:before {
+        border-color: $blue;
+    }
+    &:after {
+        visibility: visible;
+        background-color: $blue;
+        transform: scale(0.52);
+    }
+}
+@define-mixin radio-indicator-disabled {
+    &:before {
+        border-color: $checkbox-radio-disabled-color;
+    }
+    &:after {
+        background-color: $checkbox-radio-disabled-color;
+    }
+}
+@define-mixin cr-indicator-resize $size {
+    &:before, &:after {
+        width: $size;
+        height: $size;
+    }
+}
+/* utility only checkbox | radio generator */
+@define-mixin utility-cr-indicator $size: $checkbox-radio-size {
+    display: inline-block;
+    position: relative;
+    width: $size;
+    height: $size;
+    @mixin-content;
+}
+@define-mixin utility-cr-indicator-resize $size {
+    width: $size;
+    height: $size;
+}

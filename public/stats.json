@@ -1,0 +1,25 @@
+{
+  "assetsByChunkName": {
+    "chunk-vendors": [
+      "js/chunk-vendors.fcf796c7.js",
+      "js/chunk-vendors.fcf796c7.js.map"
+    ],
+    "common": [
+      "css/common.d92b3950.css",
+      "js/common.606fb972.js",
+      "js/common.606fb972.js.map"
+    ],
+    "one": [
+      "js/one.95de9c15.js",
+      "js/one.95de9c15.js.map"
+    ],
+    "three": [
+      "js/three.29481a47.js",
+      "js/three.29481a47.js.map"
+    ],
+    "two": [
+      "js/two.7c81ea6c.js",
+      "js/two.7c81ea6c.js.map"
+    ]
+  }
+}

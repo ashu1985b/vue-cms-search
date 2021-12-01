@@ -1,0 +1,9 @@
+@define-mixin float-left $important {
+    float: left$(important);
+}
+@define-mixin float-right $important {
+    float: right$(important);
+}
+@define-mixin float-none $important {
+    float: none$(important);
+}

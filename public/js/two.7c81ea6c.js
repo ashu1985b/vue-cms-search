@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["two"],{"2f9c":function(e,n,t){"use strict";t.r(n);var c=t("7a23");function o(e,n,t,o,a,r){return Object(c["openBlock"])(),Object(c["createBlock"])("div",null,"I am Widget Two")}var a={name:"Test1"};a.render=o;n["default"]=a}}]);
+//# sourceMappingURL=two.7c81ea6c.js.map

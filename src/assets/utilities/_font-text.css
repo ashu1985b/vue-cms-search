@@ -1,0 +1,132 @@
+/* vertical align text classes */
+.align-baseline    { vertical-align: baseline$(important); }
+.align-top         { vertical-align: top$(important); }
+.align-middle      { vertical-align: middle$(important); }
+.align-bottom      { vertical-align: bottom$(important); }
+.align-text-bottom { vertical-align: text-bottom$(important); }
+.align-text-top    { vertical-align: text-top$(important); }
+
+/* Alignment */
+@define-mixin align-text-props $state-mixin {
+  @each $v in (left, right, center, justify) {
+    &text-$(v) {
+      @mixin $(state-mixin) {
+        text-align: $(v)$(important);
+      }
+    }
+  }
+}
+. {
+  @mixin each-plain align-text-props;
+}
+/* Responsive alignment */
+@mixin each-media-breakpoint-up {
+  @mixin each-plain align-text-props;
+}
+
+/* Whitespace */
+.whitespace-normal { white-space: normal$(important); }
+.whitespace-no-wrap	{ white-space: nowrap$(important); }
+.whitespace-pre { white-space: pre$(important); }
+.whitespace-pre-line { white-space: pre-line$(important); }
+.whitespace-pre-wrap { white-space: pre-wrap$(important); }
+
+/* Word break */
+.break-normal	{ 
+  overflow-wrap: normal$(important);
+  word-break: normal$(important);
+}
+.break-words	{ overflow-wrap: break-word$(important); }
+.break-all	{ word-break: break-all$(important); }
+.truncate { @mixin text-truncate; }
+
+
+/* Text Transformation */
+.lowercase  { text-transform: lowercase$(important); }
+.uppercase  { text-transform: uppercase$(important); }
+.capitalize { text-transform: capitalize$(important); }
+.normal-case	{ text-transform: none$(important); }
+
+/* Font family */
+
+.font-sans { font-family: $font-family-sans-serif; }
+.font-serif { font-family: $font-family-serif; }
+.font-mono { font-family: $font-family-monospace; }
+
+/* Weight and italics */
+
+.font-weight-light   { font-weight: $font-weight-light$(important); }
+.font-weight-lighter { font-weight: $font-weight-lighter$(important); }
+.font-weight-normal  { font-weight: $font-weight-normal$(important); }
+.font-weight-bold    { font-weight: $font-weight-bold$(important); }
+.font-weight-bolder  { font-weight: $font-weight-bolder$(important); }
+.font-italic         { font-style: italic$(important); }
+.font-normal         { font-style: normal$(important); }
+
+/* Contextual colors */
+/* text color */
+/* Method 2 */
+@define-mixin each-color-variant $state-mixin {
+  @each $k, $v in (transparent, current, black, white, red, blue, grey, light-grey), (transparent, currentColor, $black, $white, $red, $blue, #55555, #999999) {
+      &text-$(k) {
+          @mixin $(state-mixin) {
+            color: $v$(important);
+          }
+      }
+  }
+}
+/* Method 2 loop - all screen */
+
+. {
+  @mixin each-plain-hover each-color-variant;
+}
+
+/* Method 2: Roll media breakpoint properties */
+
+@mixin each-media-breakpoint-up {
+  @mixin each-plain-hover each-color-variant;
+}
+
+
+/* To be done as per color loop required */
+/* @each $color, $value in $theme-colors {
+  @include text-emphasis-variant(".text-#{$color}", $value);
+} */
+
+.underline	{ text-decoration: underline$(important); }
+.line-through	{ text-decoration: line-through$(important); }
+.decoration-none { text-decoration: none$(important); }
+
+/* Reset */
+
+.text-reset { color: inherit$(important); }
+
+/* Line height */
+/*
+ leading-none	line-height: 1;
+ leading-tight	line-height: 1.25;
+ leading-snug	line-height: 1.375;
+ leading-normal	line-height: 1.5;
+ leading-relaxed	line-height: 1.625;
+ leading-loose	line-height: 2;
+*/
+@each $k, $v in (none, tight, snug, normal, relaxed, loose), (1, 1.25, 1.375, 1.5, 1.625, 2) {
+  .leading-$(k) {
+    line-height: $v$(important);
+  }
+}
+
+/* letter spacing */
+/*
+.tracking-tight: -0.025em;
+.tracking-normal: 0;
+.tracking-wide: 0.025em;
+.tracking-1: 1px;
+.tracking-2: 2px;
+.tracking-4: 4px;
+*/
+@each $k, $v in (tight, normal, wide, 1, 2, 4), (-0.025em, 0, 0.025em, 1px, 2px, 4px) {
+  .tracking-$(k) {
+    letter-spacing: $v$(important);
+  }
+}

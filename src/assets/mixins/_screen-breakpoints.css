@@ -1,0 +1,62 @@
+/* Min width and above media util */
+@define-mixin media-breakpoint-up $width {
+    @media (min-width: $width) {
+        @mixin-content;
+    }
+}
+/* Below and Max width media util */
+@define-mixin media-breakpoint-down $width {
+    @media (max-width: $width) {
+        @mixin-content;
+    }
+}
+
+/* Between Min and Max width media util */
+@define-mixin media-breakpoint-between $min-width, $max-width {
+    @media (min-width: $min-width) and (max-width: $max-width) {
+        @mixin-content;
+    }
+}
+/* declared screen breakpoints specific */
+@define-mixin media-breakpoint-only-xs {
+    @mixin media-breakpoint-between $breakpoint-xs, $breakpoint-xs-max {
+        @mixin-content;
+    }
+}
+@define-mixin media-breakpoint-only-sm {
+    @mixin media-breakpoint-between $breakpoint-sm, $breakpoint-sm-max {
+        @mixin-content;
+    }
+}
+@define-mixin media-breakpoint-only-md {
+    @mixin media-breakpoint-between $breakpoint-md, $breakpoint-md-max {
+        @mixin-content;
+    }
+}
+@define-mixin media-breakpoint-only-lg {
+    @mixin media-breakpoint-between $breakpoint-lg, $breakpoint-lg-max {
+        @mixin-content;
+    }
+}
+
+/* For looping throught each utility media breakpoints up */
+
+@define-mixin each-media-breakpoint-up {
+    @each $name, $breakpoint in (sm, md, lg, xl), ($breakpoint-sm, $breakpoint-md, $breakpoint-lg, $breakpoint-xl) {
+        @mixin media-breakpoint-up $breakpoint {
+            .$(name)\: {
+                @mixin-content;
+            }
+        }
+    }
+}
+
+@define-mixin each-media-breakpoint-down {
+    @each $name, $breakpoint in (sm, md, lg, xl), ($breakpoint-sm, $breakpoint-md, $breakpoint-lg, $breakpoint-xl) {
+        @mixin media-breakpoint-down $breakpoint {
+            .$(name)\: {
+                @mixin-content;
+            }
+        }
+    }
+}

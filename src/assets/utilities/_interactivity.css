@@ -1,0 +1,35 @@
+/* Select caret appearance */
+.appearance-none { appearance: none$(important); }
+
+/* Cursor: auto, pointer, wait, not-allowed */
+.cursor-not-allowed {
+    cursor: not-allowed$(important);
+}
+.cursor-auto {
+    cursor: auto$(important);
+}
+.cursor-wait {
+    cursor: wait$(important);
+}
+.cursor-pointer {
+    cursor: pointer$(important);
+}
+
+/* outline */
+.outline-none	{ outline: 0$(important); }
+
+/* Pointer events */
+.pointer-events-none { pointer-events: none$(important); }
+.pointer-events-auto { pointer-events: auto$(important); }
+
+/* Resize */
+.resize-none { resize: none$(important); }
+.resize-y { resize: vertical$(important); }
+.resize-x { resize: horizontal$(important); }
+.resize	{ resize: both$(important); }
+
+/* User select */
+.select-none { user-select: none$(important); }
+.select-text { user-select: text$(important); }
+.select-all { user-select: all$(important); }
+.select-auto { user-select: auto$(important); }

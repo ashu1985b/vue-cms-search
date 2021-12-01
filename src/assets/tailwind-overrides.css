@@ -1,0 +1,71 @@
+.prose {
+  font-size: 14px !important;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5 {
+  /* font-size: 16px !important; */
+  color: #042e6f !important;
+  font-weight: 600;
+}
+.prose ol,
+.prose ul {
+  list-style: none;
+}
+.prose fieldset,
+.prose ol,
+.prose ul {
+  margin: 0;
+  padding: 0;
+}
+
+.prose ul > li::before {
+  background-color: #00aced;
+}
+
+.prose figure.table {
+  display: block;
+  overflow: auto;
+}
+.prose table {
+  padding: 0;
+}
+.prose tbody td:first-child,
+.prose thead th:first-child {
+  padding: 6px 13px !important;
+}
+.prose table tr {
+  border-top: 1px solid #cccccc;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+.prose table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+.prose table tr th {
+  font-weight: bold;
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+  background-color: hsla(0, 0%, 0%, 15%);
+}
+.prose table tr td {
+  border: 1px solid #cccccc;
+  text-align: left;
+  margin: 0;
+  padding: 6px 13px;
+}
+.prose table tr th :first-child,
+.prose table tr td :first-child {
+  margin-top: 0;
+}
+.prose table tr th :last-child,
+.prose table tr td :last-child {
+  margin-bottom: 0;
+}

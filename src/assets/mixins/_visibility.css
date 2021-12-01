@@ -1,0 +1,5 @@
+/* Visibility */
+
+@define-mixin visibility $value {
+  visibility: $value !important;
+}

@@ -1,0 +1,26 @@
+/* Background color */
+
+/* Method 2 */
+
+/* Uses _hover.css mixins declared functionality and serves a its feeder property "$use-each-mixin" */
+@define-mixin each-bg-color-variant $state-mixin {
+    @each $k, $v in (transparent, current, black, white, red, blue, light-blue, light-grey), (transparent, currentColor, $black, $white, $red, $blue, #edfaff, #f7f5fa) {
+        &bg-$(k) {
+            @mixin $(state-mixin) {
+                background-color: $v$(important);
+            }
+        }
+    }
+}
+
+/* Method 2 loop - all screen */
+
+. {
+    @mixin each-plain-hover-focus each-bg-color-variant;
+}
+
+/* Method 2: Roll media breakpoint properties */
+
+@mixin each-media-breakpoint-up {
+    @mixin each-plain-hover-focus each-bg-color-variant;
+}

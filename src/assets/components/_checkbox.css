@@ -1,0 +1,29 @@
+.c-checkbox {
+    position: relative;
+    display: block;
+    min-height: calc($font-size-base * $line-height-base);
+    padding-left: calc(1.25rem + $checkbox-radio-gutter);
+    &__input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+    &__label {
+        @mixin checkbox-indicator 0.1876rem, $checkbox-radio-size;
+    }
+    &__input:focus ~ &__label {
+        &:before {
+            box-shadow: $checkbox-radio-focus-shadow;
+        }
+    }
+    &__input:checked ~ &__label {
+        @mixin checkbox-indicator-checked;
+    }
+    &__input:disabled ~ &__label {
+        color: $grey-600;
+        @mixin checkbox-indicator-disabled;
+    }
+    &--sm &__label {
+        @mixin cr-indicator-resize $checkbox-radio-size-sm;
+    }
+}
